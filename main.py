@@ -1,6 +1,10 @@
 #!/usr/bin/python
 
 import tkinter
-top = tkinter.Tk()
+root = tkinter.Tk()
 # Code to add widgets will go here...
-top.mainloop()
+
+root.geometry("250x170")
+root.title("Pomodoro App")
+
+root.mainloop()
