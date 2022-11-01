@@ -1,9 +1,18 @@
-from tikinter import *
-from tkinter import ttl
+from tkinter import *
+from tkinter import ttk
 root = Tk()
-# Code to add widgets will go here...
 
-root.geometry("250x170")
+# Adjust window settings
+root.configure(background="#AEAEAE")
 root.title("Pomodoro App")
+root.geometry("500x500")
+root.state("zoomed")
+
+
+# Code to add widgets will go here...
+frm = ttk.Frame(root, padding=10)
+frm.grid()
+ttk.Label(frm, text="PomoImprove").grid(column=0, row=0)
+ttk.Button(frm, text="Quit", command=root.destroy).grid(column=1, row=0)
 
 root.mainloop()
