@@ -1,7 +1,6 @@
-#!/usr/bin/python
-
-import tkinter
-root = tkinter.Tk()
+from tikinter import *
+from tkinter import ttl
+root = Tk()
 # Code to add widgets will go here...
 
 root.geometry("250x170")
