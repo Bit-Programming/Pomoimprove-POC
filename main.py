@@ -5,12 +5,12 @@ root = Tk()
 # Adjust window settings
 root.configure(background="#AEAEAE")
 root.title("Pomodoro App")
-# For setting the window size to this on window unmaxize
+# For setting the window size on unmaxize
 root.geometry("500x500")
 root.state("zoomed")
 
 # Define document styles
-style = ttk.Style()
+style=ttk.Style()
 style.map("C.TButton",
     foreground=[('pressed', 'red'), ('active', 'blue')],
     background=[('pressed', '!disabled', 'black'), ('active', 'white')]
@@ -18,7 +18,7 @@ style.map("C.TButton",
 
 # Functions
 def open_popup():
-   top= Toplevel(root)
+   top=Toplevel(root)
    top.geometry("750x250")
    top.title("Child Window")
    Label(top, text= "Hello World!", font=('Mistral 18 bold')).place(x=150,y=80)
