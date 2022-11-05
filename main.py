@@ -5,8 +5,7 @@ root = Tk()
 # Adjust window settings
 root.configure(background="#AEAEAE")
 root.title("Pomodoro App")
-# For setting the window size on unmaxize
-root.geometry("500x500")
+# Set window to be maximized by default
 root.state("zoomed")
 
 # Define document styles
