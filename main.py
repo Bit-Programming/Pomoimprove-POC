@@ -25,10 +25,15 @@ def open_popup():
 # Code to add widgets will go here...
 frm = ttk.Frame(root, padding=10)
 frm.grid()
-ttk.Label(frm, text="PomoImprove", font=('Mistral 18 bold')).grid(column=0, row=0)
 
-ttk.Button(frm, text="test popup", style="C.TButton", command=open_popup).grid(column=1, row=2)
-ttk.Button(frm, text="Quit", style="C.TButton", command=root.destroy).grid(column=1, row=0)
+
+Label(root, text = "PomoImprove", font= ('Helvetica 25 bold')).place(relx=.5, rely=.5,anchor=CENTER)
+
+
+#ttk.Label(frm, text="PomoImprove", font=('Mistral 18 bold')).grid(column=0, row=0, anchor=CENTER)
+
+ttk.Button(frm, text="test popup", style="C.TButton", command=open_popup).place(relx=.5, rely=.5,anchor=CENTER)
+ttk.Button(frm, text="Quit", style="C.TButton", command=root.destroy).place(relx=.5, rely=.5,anchor=N)
 
 
 root.mainloop()
