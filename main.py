@@ -27,13 +27,31 @@ frm = ttk.Frame(root, padding=10)
 frm.grid()
 
 
+
+# Specify Grid
+Grid.rowconfigure(root,0,weight=1)
+Grid.columnconfigure(root,0,weight=1)
+ 
+Grid.rowconfigure(root,1,weight=1)
+ 
+# Create Buttons
+button_1 = Button(root,text="Button 1")
+button_2 = Button(root,text="Settings")
+ 
+# Set grid
+# Stick to left side
+button_1.grid(row=0,column=0,sticky="NSW")
+button_2.grid(row=3,column=0,sticky="NSW")
+
+
+
+
+
+
 Label(root, text = "PomoImprove", font= ('Helvetica 25 bold')).place(relx=.5, rely=.5,anchor=CENTER)
 
-
-#ttk.Label(frm, text="PomoImprove", font=('Mistral 18 bold')).grid(column=0, row=0, anchor=CENTER)
-
-ttk.Button(frm, text="test popup", style="C.TButton", command=open_popup).place(relx=.5, rely=.5,anchor=CENTER)
-ttk.Button(frm, text="Quit", style="C.TButton", command=root.destroy).place(relx=.5, rely=.5,anchor=N)
+ttk.Button(frm, text="test popup", style="C.TButton", command=open_popup).grid(column=1, row=2)
+ttk.Button(frm, text="Quit", style="C.TButton", command=root.destroy).grid(column=1, row=0)
 
 
 root.mainloop()
