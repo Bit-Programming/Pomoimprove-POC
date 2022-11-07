@@ -20,7 +20,7 @@ def open_popup():
    top=Toplevel(root)
    top.geometry("750x250")
    top.title("Child Window")
-   Label(top, text= "Hello World!", font=('Mistral 18 bold')).place(x=150,y=80)
+   Label(top, text="Hello World!", font=('Mistral 18 bold')).place(x=150,y=80)
 
 # Code to add widgets will go here...
 frm = ttk.Frame(root, padding=10)
@@ -48,7 +48,7 @@ button_2.grid(row=3,column=0,sticky="NSW")
 
 
 
-Label(root, text = "PomoImprove", font= ('Helvetica 25 bold')).place(relx=.5, rely=.5,anchor=CENTER)
+Label(root, text="PomoImprove", font=('Helvetica 25 bold')).place(relx=.5, rely=.5,anchor=CENTER)
 
 ttk.Button(frm, text="test popup", style="C.TButton", command=open_popup).grid(column=1, row=2)
 ttk.Button(frm, text="Quit", style="C.TButton", command=root.destroy).grid(column=1, row=0)
