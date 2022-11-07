@@ -3,7 +3,7 @@ from tkinter import ttk
 root = Tk()
 
 # Adjust window settings
-root.configure(background="#AEAEAE")
+root.configure(background="#F0F0F0")
 root.title("Pomodoro App")
 # Set window to be maximized by default
 root.state("zoomed")
