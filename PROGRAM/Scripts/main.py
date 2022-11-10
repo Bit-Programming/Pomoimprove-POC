@@ -2,6 +2,7 @@ from tkinter import ttk
 from tkinter import *
 from tkinter import messagebox
 import time
+import lockdown
 
 root = Tk()
 
@@ -83,4 +84,5 @@ label.place(x=35, y=15)
 countdown(5)
 # root.after(0, countdown, 5)
 
+root.after(500,lockdown.startlockdown)
 root.mainloop()
