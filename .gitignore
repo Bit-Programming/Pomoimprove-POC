@@ -2,3 +2,4 @@ PROGRAM/Chrome/
 PROGRAM/Scripts/__pycache__/
 BUILDSCRIPTS/build
 BUILDSCRIPTS/dist
+*__pycache__*
