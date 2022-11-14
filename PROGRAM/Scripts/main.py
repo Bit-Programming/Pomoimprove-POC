@@ -1,10 +1,11 @@
 from tkinter import ttk
 from tkinter import *
-import time
-import lockdown
+import time, lockdown, sys, os
 
 
 root = Tk()
+# This will give us the application path created by pyinstaller
+application_path = sys._MEIPASS
 
 # Adjust window settings
 root.configure(background="#AEAEAE")
@@ -49,7 +50,7 @@ Grid.columnconfigure(root, 0, weight=1)
 Grid.rowconfigure(root, 1, weight=1)
 
 # Create Buttons
-pomodoros = Label(root, text="Pomdoros")
+pomodoros = Label(root, text="Pomodoros")
 button_2 = Button(root, borderwidth=0, text="Settings")
 
 # Set grid
