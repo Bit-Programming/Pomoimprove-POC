@@ -1,6 +1,4 @@
 PROGRAM/Chrome/
-PROGRAM/Scripts/__pycache__/
 BUILDSCRIPTS/build
 BUILDSCRIPTS/dist
-BUILDSCRIPTS/*.spec
 *__pycache__*
