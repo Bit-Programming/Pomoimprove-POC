@@ -32,15 +32,18 @@ style.map(
 
 # Functions
 
-
-def countdown(count, start):
+def countdown(count):
+    print("Count: ")
+    print(count)
+    print("Minutes: ")
+    print(minutes)
     # change text in label
     label["text"] = count
 
-    if count > 0 & start == True:
+    if count > 0:
         # call countdown again after 1000ms (1s)
         root.after(1000, countdown, count - 1)
-    elif count == 0 or start == False:
+    elif count == 0:
         label["text"] = "DONE!"
 
 
@@ -57,7 +60,7 @@ Grid.rowconfigure(root, 1, weight=1)
 
 # Create Buttons
 pomodoros = Label(root, text="Pomodoros")
-button_2 = Button(root, borderwidth=0, text="Settings")
+button_2 = Button(root, borderwidth=0, text="Quit", command=quit)
 
 # Set grid
 # Stick to left side
@@ -74,7 +77,8 @@ Label(root, text="Pomoimprove", font=("Helvetica 25 bold"), bg="#AEAEAE").place(
 # Timer length input boxes
 
 hours = IntVar()
-minutes = IntVar()
+minutes = int()
+minutes = 5
 
 # Minutes = Entry(root, bg="#AEAEAE").place(relx=.53, rely=.35, relheight=.02, relwidth=.05, anchor=CENTER)
 
@@ -88,6 +92,7 @@ spinbox = Spinbox(
     justify=CENTER,
     textvariable=minutes,
 ).place(relx=0.53, rely=0.25, relheight=0.02, relwidth=0.025, anchor=CENTER)
+
 
 # call countdown first time
 # root.after(0, countdown, 5)
@@ -105,22 +110,22 @@ Start = Button(
     borderwidth=0,
     text="Start",
     activeforeground="black",
-    command=countdown(3, True),
+    command=lambda: countdown((minutes)), # Send the value of the spinbox to timer function
 ).place(relx=0.50, rely=0.80, relheight=0.03, relwidth=0.05, anchor=CENTER)
 Stop = Button(
+
     root,
     bg="#E33E3E",
     fg="#FFFFFF",
     borderwidth=0,
     text="Stop",
     activeforeground="black",
-    command=countdown(3, False),
+    command=lambda: countdown(0),
 ).place(relx=0.50, rely=0.85, relheight=0.03, relwidth=0.05, anchor=CENTER)
 
 
 # finish implementing and assigning buttons and textbox to countdown function
-countdown(-1, True)
-
+countdown(3)
 
 root.after(500, lockdown.startlockdown)
 
