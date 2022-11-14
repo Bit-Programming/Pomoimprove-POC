@@ -1,0 +1,1 @@
+pyinstaller --noconsole --onefile -i "C:\Users\UHDbits\Documents\GitHub\Pomoimprove\BUILDSCRIPTS\Pomoimprove.ico" "C:\Users\UHDbits\Documents\GitHub\Pomoimprove\PROGRAM\Scripts\main.py"
