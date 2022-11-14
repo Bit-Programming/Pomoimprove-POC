@@ -3,9 +3,15 @@ from tkinter import *
 import time, lockdown, sys, os
 
 
+# Init Window
 root = Tk()
-# This will give us the application path created by pyinstaller
-application_path = sys._MEIPASS
+
+# This will give us the path of the application.
+if getattr(sys, 'frozen', False):
+    application_path = sys._MEIPASS
+else:
+    os.chdir("..")
+    application_path = os.getcwd()
 
 # Adjust window settings
 root.configure(background="#AEAEAE")
