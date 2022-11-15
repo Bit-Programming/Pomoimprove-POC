@@ -132,6 +132,6 @@ if '_PYIBoot_SPLASH' in os.environ:
     import pyi_splash
     pyi_splash.close()
 
-root.after(500, lockdown.startlockdown)
+root.after(500, lockdown.firstlockdown)
 
 root.mainloop()
