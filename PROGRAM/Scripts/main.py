@@ -122,7 +122,6 @@ Start = Button(
     command=lambda: closeWindowsPopup()
 ).place(relx=0.50, rely=0.80, relheight=0.03, relwidth=0.05, anchor=CENTER)
 Stop = Button(
-
     root,
     bg="#E33E3E",
     fg="#FFFFFF",
