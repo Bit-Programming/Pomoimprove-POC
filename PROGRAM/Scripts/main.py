@@ -1,6 +1,6 @@
 from tkinter import ttk
 from tkinter import *
-import time, lockdown, sys, os
+import time, lockdown, sys, os, stop
 
 
 # Init Window
@@ -61,7 +61,7 @@ Grid.rowconfigure(root, 1, weight=1)
 
 # Create Buttons
 pomodoros = Label(root, text="Pomodoros")
-button_2 = Button(root, borderwidth=0, text="Quit", command=sys.exit)
+button_2 = Button(root, borderwidth=0, text="Quit", command=stop.stop)
 
 # Set grid
 # Stick to left side
