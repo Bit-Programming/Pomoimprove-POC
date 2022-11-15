@@ -1,8 +1,11 @@
 from tkinter import ttk
 from tkinter import *
+from ctypes import windll
 import tkinter.messagebox
 import time, lockdown, sys, os, stop
 
+# Enable HIDPI Support
+windll.shcore.SetProcessDpiAwareness(1)
 
 # Set Default Variables and Functions
 # This will give us the path of the application and the path of Chrome.
@@ -78,7 +81,7 @@ button_2.grid(row=3, column=0, sticky="NSW")
 
 
 # Main Pomoimprove Logo
-Label(root, text="Pomoimprove", font=("Helvetica 25 bold"), bg="#AEAEAE").place(
+Label(root, text="Pomoimprove", font=("Segoe UI", 30, "bold"), bg="#AEAEAE").place(
     relx=0.5, rely=0.05, anchor=CENTER
 )
 
@@ -100,7 +103,7 @@ spinbox = Spinbox(
     wrap=True,
     justify=CENTER,
     textvariable=minutes,
-).place(relx=0.53, rely=0.25, relheight=0.02, relwidth=0.025, anchor=CENTER)
+).place(relx=0.5, rely=0.25, relheight=0.02, relwidth=0.025, anchor=CENTER)
 
 
 # call countdown first time
@@ -118,18 +121,20 @@ Start = Button(
     fg="#FFFFFF",
     borderwidth=0,
     text="Start",
+    font=("Segoe UI", 15),
     activeforeground="black",
     command=lambda: closeWindowsPopup()
-).place(relx=0.50, rely=0.80, relheight=0.03, relwidth=0.05, anchor=CENTER)
+).place(relx=0.5, rely=0.80, relheight=0.06, relwidth=0.10, anchor=CENTER)
 Stop = Button(
     root,
     bg="#E33E3E",
     fg="#FFFFFF",
     borderwidth=0,
     text="Stop",
+    font=("Segoe UI", 15),
     activeforeground="black",
     command=lambda: countdown(0),
-).place(relx=0.50, rely=0.85, relheight=0.03, relwidth=0.05, anchor=CENTER)
+).place(relx=0.5, rely=0.87, relheight=0.06, relwidth=0.10, anchor=CENTER)
 
 if '_PYIBoot_SPLASH' in os.environ:
     import pyi_splash
