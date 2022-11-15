@@ -1,9 +1,10 @@
 from tkinter import ttk
 from tkinter import *
+import tkinter.messagebox
 import time, lockdown, sys, os, stop
 
 
-# Set Default Variables
+# Set Default Variables and Functions
 # This will give us the path of the application and the path of Chrome.
 if getattr(sys, 'frozen', False):
     application_path = sys._MEIPASS
@@ -12,8 +13,31 @@ else:
     application_path = os.getcwd()
 chrome_path = application_path + "\Chrome\chrome.exe"
 
+# Countdown Code for Timer
+def countdown(count):
+    print("Count: ")
+    print(count)
+    print("Minutes: ")
+    print(minutes)
+    # change text in label
+    label["text"] = count
+
+    if count > 0:
+        # call countdown again after 1000ms (1s)
+        root.after(1000, countdown, count - 1)
+    elif count == 0:
+        label["text"] = "DONE!"
+
 # Init Window
 root = Tk()
+
+# Create popup about closing all windows
+def closeWindowsPopup():
+    message = tkinter.messagebox.askquestion("Ready to start?", "Are you ready to start working? This will close all open windows. You will not be able to go back until you are done with your assignment.")
+
+    if message == 'yes':
+        lockdown.secondlockdown()
+        countdown((minutes))
 
 # Adjust window settings
 root.configure(background="#AEAEAE")
@@ -31,23 +55,6 @@ style.map(
     foreground=[("pressed", "white"), ("active", "black")],
     background=[("pressed", "!disabled", "black"), ("active", "white")],
 )
-
-# Functions
-
-def countdown(count):
-    print("Count: ")
-    print(count)
-    print("Minutes: ")
-    print(minutes)
-    # change text in label
-    label["text"] = count
-
-    if count > 0:
-        # call countdown again after 1000ms (1s)
-        root.after(1000, countdown, count - 1)
-    elif count == 0:
-        label["text"] = "DONE!"
-
 
 # Code to add widgets will go here...
 frm = ttk.Frame(root, padding=10)
@@ -112,7 +119,7 @@ Start = Button(
     borderwidth=0,
     text="Start",
     activeforeground="black",
-    command=lambda: countdown((minutes)), # Send the value of the spinbox to timer function
+    command=lambda: closeWindowsPopup()
 ).place(relx=0.50, rely=0.80, relheight=0.03, relwidth=0.05, anchor=CENTER)
 Stop = Button(
 
@@ -124,10 +131,6 @@ Stop = Button(
     activeforeground="black",
     command=lambda: countdown(0),
 ).place(relx=0.50, rely=0.85, relheight=0.03, relwidth=0.05, anchor=CENTER)
-
-
-# finish implementing and assigning buttons and textbox to countdown function
-countdown(3)
 
 if '_PYIBoot_SPLASH' in os.environ:
     import pyi_splash
