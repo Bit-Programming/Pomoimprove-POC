@@ -6,12 +6,13 @@ import time, lockdown, sys, os
 # Init Window
 root = Tk()
 
-# This will give us the path of the application.
+# This will give us the path of the application and the path of Chrome.
 if getattr(sys, 'frozen', False):
     application_path = sys._MEIPASS
 else:
     os.chdir("..")
     application_path = os.getcwd()
+chrome_path = application_path + "\Chrome\chrome.exe"
 
 # Adjust window settings
 root.configure(background="#AEAEAE")
