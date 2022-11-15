@@ -20,6 +20,15 @@ a = Analysis(
     noarchive=False,
 )
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
+splash = Splash(
+    'C:\\Users\\UHDbits\\Documents\\GitHub\\Pomoimprove\\BUILDSCRIPTS\\Assets\\splash.png',
+    binaries=a.binaries,
+    datas=a.datas,
+    text_pos=None,
+    text_size=12,
+    minify_script=True,
+    always_on_top=True,
+)
 
 exe = EXE(
     pyz,
@@ -28,6 +37,8 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     Tree('C:\\Users\\UHDbits\\Documents\\GitHub\\Pomoimprove\\PROGRAM\\Chrome', prefix='Chrome\\'),
+    splash,
+    splash.binaries,
     [],
     name='main',
     debug=False,
@@ -42,5 +53,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['C:\\Users\\UHDbits\\Documents\\GitHub\\Pomoimprove\\BUILDSCRIPTS\\Pomoimprove.ico'],
+    icon=['C:\\Users\\UHDbits\\Documents\\GitHub\\Pomoimprove\\BUILDSCRIPTS\\Assets\\Pomoimprove.ico'],
 )

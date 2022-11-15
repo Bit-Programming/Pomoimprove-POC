@@ -61,7 +61,7 @@ Grid.rowconfigure(root, 1, weight=1)
 
 # Create Buttons
 pomodoros = Label(root, text="Pomodoros")
-button_2 = Button(root, borderwidth=0, text="Quit", command=quit)
+button_2 = Button(root, borderwidth=0, text="Quit", command=sys.exit)
 
 # Set grid
 # Stick to left side
@@ -127,6 +127,10 @@ Stop = Button(
 
 # finish implementing and assigning buttons and textbox to countdown function
 countdown(3)
+
+if '_PYIBoot_SPLASH' in os.environ:
+    import pyi_splash
+    pyi_splash.close()
 
 root.after(500, lockdown.startlockdown)
 
