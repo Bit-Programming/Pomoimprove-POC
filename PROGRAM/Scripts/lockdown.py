@@ -21,9 +21,10 @@ def firstlockdown():
             win32con.SWP_NOMOVE | win32con.SWP_NOSIZE,
         )
 
-        # Attempt to kill Explorer
+        # Attempt to kill Explorer and Task Manager
         try:
             os.system("taskkill /f /im explorer.exe")
+            os.system("taskkill /f /im taskmgr.exe")
         except:
             pass
 
@@ -31,3 +32,7 @@ def firstlockdown():
         reg_key = winreg.CreateKeyEx(winreg.HKEY_CURRENT_USER, registry_path, 0, winreg.KEY_SET_VALUE)
         winreg.SetValueEx(reg_key, registry_name, 0, winreg.REG_DWORD, value)
         winreg.CloseKey(reg_key)
+
+def secondlockdown():
+    # This code will close all windows, except for the main Pomoimprove window.
+    os.system("powershell -EncodedCommand RwBlAHQALQBQAHIAbwBjAGUAcwBzACAAfAAgAFcAaABlAHIAZQAtAE8AYgBqAGUAYwB0ACAAewAoACQAXwAuAE0AYQBpAG4AVwBpAG4AZABvAHcAVABpAHQAbABlACAALQBuAGUAIAAiACIAKQAgAC0AYQBuAGQAIAAoACQAXwAuAE0AYQBpAG4AVwBpAG4AZABvAHcAVABpAHQAbABlACAALQBuAGUAIAAiAFAAbwBtAG8AaQBtAHAAcgBvAHYAZQAiACkAfQAgAHwAIABzAHQAbwBwAC0AcAByAG8AYwBlAHMAcwA=")

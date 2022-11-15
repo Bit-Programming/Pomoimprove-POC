@@ -3,9 +3,7 @@ from tkinter import *
 import time, lockdown, sys, os, stop
 
 
-# Init Window
-root = Tk()
-
+# Set Default Variables
 # This will give us the path of the application and the path of Chrome.
 if getattr(sys, 'frozen', False):
     application_path = sys._MEIPASS
@@ -13,6 +11,9 @@ else:
     os.chdir("..")
     application_path = os.getcwd()
 chrome_path = application_path + "\Chrome\chrome.exe"
+
+# Init Window
+root = Tk()
 
 # Adjust window settings
 root.configure(background="#AEAEAE")
