@@ -2,7 +2,7 @@ from tkinter import ttk
 from tkinter import *
 from ctypes import windll
 import tkinter.messagebox
-import time, lockdown, sys, os, stop
+import lockdown, sys, os, stop, timer, sv_ttk
 
 # Enable HIDPI Support
 windll.shcore.SetProcessDpiAwareness(1)
@@ -16,23 +16,9 @@ else:
     application_path = os.getcwd()
 chrome_path = application_path + "\Chrome\chrome.exe"
 
-# Countdown Code for Timer
-def countdown(count):
-    print("Count: ")
-    print(count)
-    print("Minutes: ")
-    print(minutes)
-    # change text in label
-    label["text"] = count
-
-    if count > 0:
-        # call countdown again after 1000ms (1s)
-        root.after(1000, countdown, count - 1)
-    elif count == 0:
-        label["text"] = "DONE!"
-
 # Init Window
 root = Tk()
+sv_ttk.set_theme("dark")
 
 # Create popup about closing all windows
 def closeWindowsPopup():
@@ -40,10 +26,9 @@ def closeWindowsPopup():
 
     if message == 'yes':
         lockdown.secondlockdown()
-        countdown((minutes))
+        timer.countdown((minutes))
 
 # Adjust window settings
-root.configure(background="#AEAEAE")
 root.title("Pomoimprove")
 root.resizable(False, False)
 root.overrideredirect(True)
@@ -71,17 +56,22 @@ Grid.columnconfigure(root, 0, weight=1)
 Grid.rowconfigure(root, 1, weight=1)
 
 # Create Buttons
-pomodoros = Label(root, text="Pomodoros")
-button_2 = Button(root, borderwidth=0, text="Quit", command=stop.stop)
+def on_enter(e):
+    button_2['background'] = '#61cbfc'
+
+def on_leave(e):
+    button_2['background'] = '#1c1c1c'
+button_2 = Button(root, borderwidth=1, text="Quit", height=3, width=10, command=stop.stop)
+button_2.bind("<Enter>", on_enter)
+button_2.bind("<Leave>", on_leave)
 
 # Set grid
 # Stick to left side
-pomodoros.grid(row=0, column=0, sticky="NSW")
 button_2.grid(row=3, column=0, sticky="NSW")
 
 
 # Main Pomoimprove Logo
-Label(root, text="Pomoimprove", font=("Segoe UI", 30, "bold"), bg="#AEAEAE").place(
+Label(root, text="Pomoimprove", font=("Segoe UI", 30, "bold")).place(
     relx=0.5, rely=0.05, anchor=CENTER
 )
 
@@ -92,26 +82,9 @@ hours = IntVar()
 minutes = int()
 minutes = 5
 
-# Minutes = Entry(root, bg="#AEAEAE").place(relx=.53, rely=.35, relheight=.02, relwidth=.05, anchor=CENTER)
-
-spinbox = Spinbox(
-    root,
-    bg="#AEAEAE",
-    from_=0,
-    to=60,
-    increment=5,
-    wrap=True,
-    justify=CENTER,
-    textvariable=minutes,
-).place(relx=0.5, rely=0.25, relheight=0.02, relwidth=0.025, anchor=CENTER)
-
 
 # call countdown first time
 # root.after(0, countdown, 5)
-
-# Needs to be before start/stop timer buttons
-label = Label(root, text="test")
-label.place(x=35, y=15)
 
 
 # Make the start/stop timer buttons
@@ -125,16 +98,6 @@ Start = Button(
     activeforeground="black",
     command=lambda: closeWindowsPopup()
 ).place(relx=0.5, rely=0.80, relheight=0.06, relwidth=0.10, anchor=CENTER)
-Stop = Button(
-    root,
-    bg="#E33E3E",
-    fg="#FFFFFF",
-    borderwidth=0,
-    text="Stop",
-    font=("Segoe UI", 15),
-    activeforeground="black",
-    command=lambda: countdown(0),
-).place(relx=0.5, rely=0.87, relheight=0.06, relwidth=0.10, anchor=CENTER)
 
 if '_PYIBoot_SPLASH' in os.environ:
     import pyi_splash
