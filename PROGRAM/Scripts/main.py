@@ -26,7 +26,7 @@ def closeWindowsPopup():
 
     if message == 'yes':
         lockdown.secondlockdown()
-        timer.countdown((minutes))
+        timer.countdown(5)
 
 # Adjust window settings
 root.title("Pomoimprove")
@@ -75,14 +75,6 @@ Label(root, text="Pomoimprove", font=("Segoe UI", 30, "bold")).place(
     relx=0.5, rely=0.05, anchor=CENTER
 )
 
-
-# Timer length input boxes
-
-hours = IntVar()
-minutes = int()
-minutes = 5
-
-
 # call countdown first time
 # root.after(0, countdown, 5)
 
@@ -100,6 +92,7 @@ Start = Button(
 ).place(relx=0.5, rely=0.80, relheight=0.06, relwidth=0.10, anchor=CENTER)
 
 if '_PYIBoot_SPLASH' in os.environ:
+    # NOT an import error
     import pyi_splash
     pyi_splash.close()
 

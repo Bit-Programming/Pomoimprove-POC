@@ -4,20 +4,17 @@ from ctypes import windll
 import tkinter.messagebox
 import sys, os, stop, timer
 
-def timer():
 
-    root = Tk()
-
-    label = Label(root, text="test")
-    label.place(x=35, y=15)
 
 
 # Countdown Code for Timer
-def countdown(count):
+def countdown(count):    
+    root = Tk()
+    label = Label(root)
+    label.place(x=35, y=15)
+    
     print("Count: ")
     print(count)
-    print("Minutes: ")
-    print(minutes)
     # change text in label
     label["text"] = count
 
