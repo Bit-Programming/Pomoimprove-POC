@@ -2,6 +2,7 @@ import os
 import sys
 import winreg
 
+
 # Set Registry values for enabling Task Manager
 registry_path: str = r"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System"
 registry_name: str = "DisableTaskMgr"

