@@ -23,3 +23,4 @@ def work(count):
         root.after(1000, work, count - 1)
     elif count == 0:
         label["text"] = "DONE!"
+        
