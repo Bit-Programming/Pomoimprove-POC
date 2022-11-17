@@ -8,7 +8,7 @@ import sys, os, stop, timer
 
 
 # Countdown Code for Timer
-def countdown(count):    
+def work(count):    
     root = Tk()
     label = Label(root)
     label.place(x=35, y=15)
@@ -20,6 +20,6 @@ def countdown(count):
 
     if count > 0:
         # call countdown again after 1000ms (1s)
-        root.after(1000, countdown, count - 1)
+        root.after(1000, work, count - 1)
     elif count == 0:
         label["text"] = "DONE!"
