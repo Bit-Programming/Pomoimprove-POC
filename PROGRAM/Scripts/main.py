@@ -43,9 +43,6 @@ def closeWindowsPopup():
 # Define a function to close "work.py"
 def exitshortcut():
     root.state('zoomed')
-    if getattr(sys, 'frozen', False):
-        # This code will close all windows, except for the main Pomoimprove window
-        os.system("powershell -EncodedCommand RwBlAHQALQBQAHIAbwBjAGUAcwBzACAAfAAgAFcAaABlAHIAZQAtAE8AYgBqAGUAYwB0ACAAewAoACQAXwAuAE0AYQBpAG4AVwBpAG4AZABvAHcAVABpAHQAbABlACAALQBuAGUAIAAiACIAKQAgAC0AYQBuAGQAIAAoACQAXwAuAE0AYQBpAG4AVwBpAG4AZABvAHcAVABpAHQAbABlACAALQBuAGUAIAAiAFAAbwBtAG8AaQBtAHAAcgBvAHYAZQAiACkAfQAgAHwAIABzAHQAbwBwAC0AcAByAG8AYwBlAHMAcwA=")
 # Setup keyboard shortcut to quit the "work" part of the program
 keyboard.add_hotkey('ctrl + alt + shift + b + i + t', exitshortcut)
 
