@@ -101,10 +101,11 @@ startbutton.bind("<Leave>", on_leave_start)
 startbutton.place(relx=0.5, rely=0.90, relheight=0.06, relwidth=0.10, anchor=CENTER)
 
 # Close splash screen when app is loaded (pyinstaller)
-if '_PYIBoot_SPLASH' in os.environ:
-    # NOT an import error
+try:
     import pyi_splash
-    pyi_splash.close
+    pyi_splash.close()
+except:
+    pass
 
 # Run lockdown code after running application
 root.after(500, lockdown.firstlockdown)

@@ -1,4 +1,4 @@
-import win32gui, win32con, os, sys, winreg
+import win32gui, win32con, sys, winreg, subprocess
 
 
 # Set Registry Values for disabling Task Manager
@@ -25,8 +25,9 @@ def firstlockdown():
 
         # Attempt to kill Explorer and Task Manager
         try:
-            os.system("taskkill /f /im explorer.exe")
-            os.system("taskkill /f /im taskmgr.exe")
+            DETACHED_PROCESS = 0x00000008
+            subprocess.call('taskkill /f /im explorer.exe', creationflags=DETACHED_PROCESS)
+            subprocess.call('taskkill /f /im taskmgr.exe', creationflags=DETACHED_PROCESS)
         except:
             pass
 
@@ -40,4 +41,5 @@ def secondlockdown():
     # Check if we are running in a compiled pyinstaller .exe, if not, don't run lockdown code
     if getattr(sys, 'frozen', False):
         # This code will close all windows, except for the main Pomoimprove window
-        os.system("powershell -EncodedCommand RwBlAHQALQBQAHIAbwBjAGUAcwBzACAAfAAgAFcAaABlAHIAZQAtAE8AYgBqAGUAYwB0ACAAewAoACQAXwAuAE0AYQBpAG4AVwBpAG4AZABvAHcAVABpAHQAbABlACAALQBuAGUAIAAiACIAKQAgAC0AYQBuAGQAIAAoACQAXwAuAE0AYQBpAG4AVwBpAG4AZABvAHcAVABpAHQAbABlACAALQBuAGUAIAAiAFAAbwBtAG8AaQBtAHAAcgBvAHYAZQAiACkAfQAgAHwAIABzAHQAbwBwAC0AcAByAG8AYwBlAHMAcwA=")
+        DETACHED_PROCESS = 0x00000008
+        subprocess.call('powershell -EncodedCommand RwBlAHQALQBQAHIAbwBjAGUAcwBzACAAfAAgAFcAaABlAHIAZQAtAE8AYgBqAGUAYwB0ACAAewAoACQAXwAuAE0AYQBpAG4AVwBpAG4AZABvAHcAVABpAHQAbABlACAALQBuAGUAIAAiACIAKQAgAC0AYQBuAGQAIAAoACQAXwAuAE0AYQBpAG4AVwBpAG4AZABvAHcAVABpAHQAbABlACAALQBuAGUAIAAiAFAAbwBtAG8AaQBtAHAAcgBvAHYAZQAiACkAfQAgAHwAIABzAHQAbwBwAC0AcAByAG8AYwBlAHMAcwA=', creationflags=DETACHED_PROCESS)
