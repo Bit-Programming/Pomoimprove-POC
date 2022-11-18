@@ -1,10 +1,9 @@
 from tkinter import ttk
 from tkinter import *
-import keyboard
 from PIL import Image, ImageTk
 from ctypes import windll
 import tkinter.messagebox
-import lockdown, config, sys, os, stop, sv_ttk
+import lockdown, config, os, stop, sv_ttk, keyboard
 
 
 ## Enable HIDPI Support
