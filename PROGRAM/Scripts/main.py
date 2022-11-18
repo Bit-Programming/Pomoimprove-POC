@@ -1,32 +1,14 @@
 from tkinter import ttk
 from tkinter import *
+import keyboard
 from PIL import Image, ImageTk
 from ctypes import windll
 import tkinter.messagebox
-import lockdown, sys, os, stop, work, sv_ttk
+import lockdown, sys, os, stop, sv_ttk
 
 
 ## Enable HIDPI Support
 windll.shcore.SetProcessDpiAwareness(1)
-
-
-## Set Default Variables and Functions
-# This will give us the path of the application, the path of Chrome, and the path to the logo.
-if getattr(sys, 'frozen', False):
-    application_path = sys._MEIPASS
-else:
-    os.chdir("..")
-    application_path = os.getcwd()
-chrome_path = application_path + "\Chrome\chrome.exe"
-logo_path = application_path + "\Pomoimprove\PROGRAM\Images\Logo.png"
-
-# Create popup about closing all windows
-def closeWindowsPopup():
-    message = tkinter.messagebox.askquestion("Ready to start?", "Are you ready to start working? This will close all open windows. You will not be able to go back until you are done with your assignment.")
-    if message == 'yes':
-        lockdown.secondlockdown()
-        # CHANGE THIS ONCE WE FIGURE OUT THE ISSUE 
-        work.work(5)
 
 
 ## Init Window
@@ -45,6 +27,41 @@ style.map(
     foreground=[("pressed", "white"), ("active", "black")],
     background=[("pressed", "!disabled", "black"), ("active", "white")],
 )
+
+
+## Set Default Variables and Functions
+# This will give us the path of the application, the path of Chrome, and the path to the logo
+if getattr(sys, 'frozen', False):
+    application_path = sys._MEIPASS
+else:
+    os.chdir("..")
+    application_path = os.getcwd()
+chrome_path = application_path + "\Chrome\chrome.exe"
+logo_path = application_path + "\Pomoimprove\PROGRAM\Images\Logo.png"
+
+# Create popup about closing all windows
+def closeWindowsPopup():
+    message = tkinter.messagebox.askquestion("Ready to start?", "Are you ready to start working? This will close all open windows. You will not be able to go back until you are done with your assignment.")
+    if message == 'yes':
+        lockdown.secondlockdown()
+        # Import "work.py", which will load the next part of the program
+        import work
+        # Hide the Pomoimprove start window
+        root.withdraw()
+
+
+## Setup keyboard shortcut to close "work.py"
+def exitshortcut():
+    root.title("Pomoimprove")
+    root.resizable(False, False)
+    root.overrideredirect(True)
+    root.state("zoomed")
+    root.deiconify()
+    if getattr(sys, 'frozen', False):
+        # This code will close all windows, except for the main Pomoimprove window
+        os.system("powershell -EncodedCommand RwBlAHQALQBQAHIAbwBjAGUAcwBzACAAfAAgAFcAaABlAHIAZQAtAE8AYgBqAGUAYwB0ACAAewAoACQAXwAuAE0AYQBpAG4AVwBpAG4AZABvAHcAVABpAHQAbABlACAALQBuAGUAIAAiACIAKQAgAC0AYQBuAGQAIAAoACQAXwAuAE0AYQBpAG4AVwBpAG4AZABvAHcAVABpAHQAbABlACAALQBuAGUAIAAiAFAAbwBtAG8AaQBtAHAAcgBvAHYAZQAiACkAfQAgAHwAIABzAHQAbwBwAC0AcAByAG8AYwBlAHMAcwA=")
+# Setup keyboard shortcut to quit the "work" part of the program
+keyboard.add_hotkey('ctrl + alt + shift + b + i + t', exitshortcut)
 
 
 ## Main Code
@@ -98,7 +115,7 @@ startbutton = Button(
 # Bind hover actions
 startbutton.bind("<Enter>", on_enter_start)
 startbutton.bind("<Leave>", on_leave_start)
-# Position "Quit" button to bottom left corner
+# Position "Start" button
 startbutton.place(relx=0.5, rely=0.90, relheight=0.06, relwidth=0.10, anchor=CENTER)
 
 # Close splash screen when app is loaded (pyinstaller)
@@ -109,5 +126,6 @@ if '_PYIBoot_SPLASH' in os.environ:
 
 # Run lockdown code after running application
 root.after(500, lockdown.firstlockdown)
+
 
 root.mainloop()
