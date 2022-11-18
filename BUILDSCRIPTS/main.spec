@@ -37,6 +37,8 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     Tree('C:\\Users\\UHDbits\\Documents\\GitHub\\Pomoimprove\\PROGRAM\\Chrome', prefix='Chrome\\'),
+    Tree('C:\\Users\\UHDbits\\Documents\\GitHub\\Pomoimprove\\PROGRAM\\Images', prefix='Images\\'),
+    Tree('C:\\Users\\UHDbits\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\sv_ttk', prefix='sv_ttk\\'),
     splash,
     splash.binaries,
     [],

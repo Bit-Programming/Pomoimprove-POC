@@ -4,7 +4,7 @@ import keyboard
 from PIL import Image, ImageTk
 from ctypes import windll
 import tkinter.messagebox
-import lockdown, sys, os, stop, sv_ttk
+import lockdown, config, sys, os, stop, sv_ttk
 
 
 ## Enable HIDPI Support
@@ -30,15 +30,6 @@ style.map(
 
 
 ## Set Default Variables and Functions
-# This will give us the path of the application, the path of Chrome, and the path to the logo
-if getattr(sys, 'frozen', False):
-    application_path = sys._MEIPASS
-else:
-    os.chdir("..")
-    application_path = os.getcwd()
-chrome_path = application_path + "\Chrome\chrome.exe"
-logo_path = application_path + "\Pomoimprove\PROGRAM\Images\Logo.png"
-
 # Create popup about closing all windows
 def closeWindowsPopup():
     message = tkinter.messagebox.askquestion("Ready to start?", "Are you ready to start working? This will close all open windows. You will not be able to go back until you are done with your assignment.")
@@ -47,16 +38,11 @@ def closeWindowsPopup():
         # Import "work.py", which will load the next part of the program
         import work
         # Hide the Pomoimprove start window
-        root.withdraw()
+        root.state('withdrawn')
 
-
-## Setup keyboard shortcut to close "work.py"
+# Define a function to close "work.py"
 def exitshortcut():
-    root.title("Pomoimprove")
-    root.resizable(False, False)
-    root.overrideredirect(True)
-    root.state("zoomed")
-    root.deiconify()
+    root.state('zoomed')
     if getattr(sys, 'frozen', False):
         # This code will close all windows, except for the main Pomoimprove window
         os.system("powershell -EncodedCommand RwBlAHQALQBQAHIAbwBjAGUAcwBzACAAfAAgAFcAaABlAHIAZQAtAE8AYgBqAGUAYwB0ACAAewAoACQAXwAuAE0AYQBpAG4AVwBpAG4AZABvAHcAVABpAHQAbABlACAALQBuAGUAIAAiACIAKQAgAC0AYQBuAGQAIAAoACQAXwAuAE0AYQBpAG4AVwBpAG4AZABvAHcAVABpAHQAbABlACAALQBuAGUAIAAiAFAAbwBtAG8AaQBtAHAAcgBvAHYAZQAiACkAfQAgAHwAIABzAHQAbwBwAC0AcAByAG8AYwBlAHMAcwA=")
@@ -92,7 +78,7 @@ Label(root, text="Pomoimprove", font=("Segoe UI", 30, "bold")).place(
 )
 
 # Add Pomoimprove Logo
-logo_def = Image.open(logo_path)
+logo_def = Image.open(config.logo_path)
 logo = ImageTk.PhotoImage(logo_def)
 logolabel = Label(image=logo)
 logolabel.place(relx=0.5, rely=0.45, anchor=CENTER)
