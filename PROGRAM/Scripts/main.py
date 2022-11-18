@@ -35,10 +35,10 @@ def closeWindowsPopup():
     message = tkinter.messagebox.askquestion("Ready to start?", "Are you ready to start working? This will close all open windows. You will not be able to go back until you are done with your assignment.")
     if message == 'yes':
         lockdown.secondlockdown()
-        # Import "work.py", which will load the next part of the program
-        import work
         # Hide the Pomoimprove start window
         root.state('withdrawn')
+        # Import "work.py", which will load the next part of the program
+        import work
 
 # Define a function to close "work.py"
 def exitshortcut():

@@ -2,20 +2,24 @@ from tkinter import ttk
 from tkinter import *
 from ctypes import windll
 import tkinter.messagebox
-import sys, os, stop, timer
+import sys, os, stop, timer, keyboard
 
-def work(count):
-    count = count - 1
-    root = Tk()
-    label = Label(root, text = count)
-    label.place(x=35, y=15)
 
-    print("Count: ")
-    print(count)
+## Set Default Variables and Functions
+# Make function to quit out of the timer and Chrome
+def quit():
+    # Attempt to kill Chrome
+    try:
+        os.system("taskkill /f /im chrome.exe")
+    except:
+        pass
+    # Destroy the root window(s)
+    root.destroy()
+# Setup keyboard shortcut to quit the "work" part of the program
+keyboard.add_hotkey('ctrl + alt + shift + b + i + t', quit)
 
-    if count > 0:
-        # call countdown again after 1000ms (1s)
-        root.after(1000, work, count)
-    elif count == 0:
-        label["text"] = "DONE!"
-work(5)
+
+root = Tk()
+
+
+root.mainloop()
