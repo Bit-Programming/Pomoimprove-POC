@@ -75,6 +75,12 @@ root.overrideredirect(True)
 root.state("normal")
 sv_ttk.set_theme("dark")
 
+# Set window on top
+root.call('wm', 'attributes', '.', '-topmost', '1')
+
+# Set window size
+root.geometry("100x100")
+
 timerlabel = Label(root, text="", font=("Segoe UI", 10, "bold"))
 timerlabel.place(relx=0.5, rely=0.5, anchor=CENTER)
 time = 60
