@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(
-    ['C:\\Users\\UHDbits\\Documents\\GitHub\\Pomoimprove\\PROGRAM\\Scripts\\main.py'],
+    ['..\\PROGRAM\\Scripts\\main.py'],
     pathex=[],
     binaries=[],
     datas=[],
@@ -21,7 +21,8 @@ a = Analysis(
 )
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 splash = Splash(
-    'C:\\Users\\UHDbits\\Documents\\GitHub\\Pomoimprove\\BUILDSCRIPTS\\Assets\\splash.png',
+    'Assets\\splash.png',
+
     binaries=a.binaries,
     datas=a.datas,
     text_pos=None,
@@ -36,9 +37,9 @@ exe = EXE(
     a.binaries,
     a.zipfiles,
     a.datas,
-    Tree('C:\\Users\\UHDbits\\Documents\\GitHub\\Pomoimprove\\PROGRAM\\Chrome', prefix='Chrome\\'),
-    Tree('C:\\Users\\UHDbits\\Documents\\GitHub\\Pomoimprove\\PROGRAM\\Images', prefix='Images\\'),
-    Tree('C:\\Users\\UHDbits\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\sv_ttk', prefix='sv_ttk\\'),
+    Tree('..\\PROGRAM\\Chrome', prefix='Chrome\\'),
+    Tree('..\\PROGRAM\\Images', prefix='Images\\'),
+    Tree('C:\\Users\\bkang\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\sv_ttk', prefix='sv_ttk\\'),
     splash,
     splash.binaries,
     [],
@@ -56,5 +57,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['C:\\Users\\UHDbits\\Documents\\GitHub\\Pomoimprove\\BUILDSCRIPTS\\Assets\\Pomoimprove.ico'],
+    icon=['Assets\\Pomoimprove.ico'],
 )
