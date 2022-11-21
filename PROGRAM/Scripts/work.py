@@ -42,6 +42,24 @@ def quit():
 # Setup keyboard shortcut to quit the "work" part of the program
 keyboard.add_hotkey('ctrl + alt + shift + b + i + t', quit)
 
+# Define the timer code
+def timer():
+    # Set "time" as a global variable
+    global time
+    if time == 0:
+        timerlabel.config(text = "DONE")
+        # ADD VARIABLE FUNCTION
+    else:
+        time = time - 1 # Take away 1 from the time
+        global minute
+        minute = time // 60
+        seconds = time - minute * 60
+        if seconds < 10:
+            timerlabel.config(text = str(minute) + ":" + "0" + str(seconds)) # Change text on timer, and add 0 as needed
+        else:
+            timerlabel.config(text = str(minute) + ":" + str(seconds)) # Change text on timer
+        root.after(1000, timer) # Wait one second, then repeat
+        root.update() # Update window
 
 ## Main Code
 # Open prompt asking to sign into your Google Account
@@ -56,5 +74,10 @@ root.resizable(False, False)
 root.overrideredirect(True)
 root.state("normal")
 sv_ttk.set_theme("dark")
+
+timerlabel = Label(root, text="", font=("Segoe UI", 10, "bold"))
+timerlabel.place(relx=0.5, rely=0.5, anchor=CENTER)
+time = 60
+root.after(1000, timer)
 
 root.mainloop()
