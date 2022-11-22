@@ -21,13 +21,24 @@ def googleAccountPopup():
 # Prompt for Spotify account signin
 def spotifyAccountPopup():
     message = tkinter.messagebox.askquestion("Spotify Account", "If you want to, you can sign into your Spotify account and play music in the background while you are working. This is known to further increase productivity. Once signed in, close out of the window.")
+    global spotifyaccount
     if message == 'yes':
-        # Set a variable so we know that they have a Spotify account
+        # Set a variable so we know that they have/don't have a Spotify account
         spotifyaccount = 1
         DETACHED_PROCESS = 0x00000008
         subprocess.call(config.chrome_path + " --new-window --app=https://accounts.spotify.com/en/login", creationflags=DETACHED_PROCESS)
     else:
         spotifyaccount = 0
+
+# Setup the first break period
+def firstBreakPeriod():
+    # Set a variable to a function to run once the timer is done
+    global run
+    run = googleAccountPopup
+    # Set the time for the timer
+    global time
+    time = 10
+    root.after(1000, timer)
 
 # Make function to quit out of the timer and Chrome
 def quit():
@@ -48,7 +59,7 @@ def timer():
     global time
     if time == 0:
         timerlabel.config(text = "DONE")
-        # ADD VARIABLE FUNCTION
+        run()
     else:
         time = time - 1 # Take away 1 from the time
         global minute
@@ -83,7 +94,8 @@ root.geometry("100x100")
 
 timerlabel = Label(root, text="", font=("Segoe UI", 10, "bold"))
 timerlabel.place(relx=0.5, rely=0.5, anchor=CENTER)
-time = 60
-root.after(1000, timer)
+
+firstBreakPeriod()
+
 
 root.mainloop()
