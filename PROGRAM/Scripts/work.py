@@ -24,11 +24,11 @@ def spotifyAccountPopup():
     global spotifyaccount
     if message == 'yes':
         # Set a variable so we know that they have/don't have a Spotify account
-        spotifyaccount = 1
+        spotifyaccount = True
         DETACHED_PROCESS = 0x00000008
         subprocess.call(config.chrome_path + " --new-window --app=https://accounts.spotify.com/en/login", creationflags=DETACHED_PROCESS)
     else:
-        spotifyaccount = 0
+        spotifyaccount = False
 
 # Setup the first break period
 def firstBreakPeriod():
