@@ -1,5 +1,6 @@
 import sys, os
 
+
 # This will give us the path of the application, the path of Chrome, and the path to the logo
 if getattr(sys, 'frozen', False):
     application_path = sys._MEIPASS
