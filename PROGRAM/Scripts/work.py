@@ -3,7 +3,7 @@ from tkinter import *
 from ctypes import windll
 import tkinter.messagebox
 import time as sleep
-import config, sv_ttk, keyboard, subprocess, os, shutil, threading, window
+import config, keyboard, subprocess, os, shutil, threading, window
 
 
 ## Enable HIDPI Support
@@ -187,7 +187,6 @@ root.overrideredirect(True)
 root.state("normal")
 root.configure(bg="#1c1c1c")
 root.protocol("WM_DELETE_WINDOW", preventClose)
-sv_ttk.set_theme("dark")
 
 # Set window on top
 root.call('wm', 'attributes', '.', '-topmost', '1')

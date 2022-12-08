@@ -3,7 +3,7 @@ from tkinter import *
 from PIL import Image, ImageTk
 from ctypes import windll
 import tkinter.messagebox
-import lockdown, config, os, stop, sv_ttk, keyboard
+import lockdown, config, os, stop, keyboard
 
 
 ## Enable HIDPI Support
@@ -12,13 +12,12 @@ windll.shcore.SetProcessDpiAwareness(1)
 
 ## Init Window
 root = Tk()
-# Set theme to dark mode
-sv_ttk.set_theme("dark")
 # Adjust window settings
 root.title("Pomoimprove")
 root.resizable(False, False)
 root.overrideredirect(True)
 root.state("zoomed")
+root.configure(bg="#1c1c1c")
 # Define application button style
 style = ttk.Style()
 style.map(
@@ -69,14 +68,14 @@ quitbutton.bind("<Leave>", on_leave_quit)
 quitbutton.place(relx=0, rely=1, anchor=SW)
 
 # Add Pomoimprove text
-Label(root, text="Pomoimprove", font=("Segoe UI", 30, "bold")).place(
+Label(root, text="Pomoimprove", font=("Segoe UI", 30, "bold"), background="#1c1c1c", foreground="#FFFFFF").place(
     relx=0.5, rely=0.10, anchor=CENTER
 )
 
 # Add Pomoimprove Logo
 logo_def = Image.open(config.logo_path)
 logo = ImageTk.PhotoImage(logo_def)
-logolabel = Label(image=logo)
+logolabel = Label(image=logo, background="#1c1c1c", foreground="#FFFFFF")
 logolabel.place(relx=0.5, rely=0.45, anchor=CENTER)
 
 # Define "Start" button hover actions

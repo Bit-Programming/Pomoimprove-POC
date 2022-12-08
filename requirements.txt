@@ -1,6 +1,5 @@
 keyboard
 Pillow
 pywin32
-sv-ttk
 # This is only required for compiling
 pyinstaller
