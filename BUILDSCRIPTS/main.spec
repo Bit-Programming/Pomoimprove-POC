@@ -39,7 +39,6 @@ exe = EXE(
     a.datas,
     Tree('..\\PROGRAM\\Chrome', prefix='Chrome\\'),
     Tree('..\\PROGRAM\\Images', prefix='Images\\'),
-    Tree('..\\..\\..\\..\\AppData\\Local\\Programs\\Python\\Python311\\Lib\\site-packages\\sv_ttk', prefix='sv_ttk\\'),
     splash,
     splash.binaries,
     [],
