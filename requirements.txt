@@ -1,0 +1,5 @@
+keyboard
+Pillow
+pywin32
+sv-ttk
+pyinstaller
