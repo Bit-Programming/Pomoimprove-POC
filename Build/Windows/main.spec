@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(
-    ['..\\PROGRAM\\Scripts\\main.py'],
+    ['..\\..\\PROGRAM\\Scripts\\main.py'],
     pathex=[],
     binaries=[],
     datas=[],
@@ -21,7 +21,7 @@ a = Analysis(
 )
 pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
 splash = Splash(
-    'Assets\\splash.png',
+    '..\\Assets\\splash.png',
 
     binaries=a.binaries,
     datas=a.datas,
@@ -37,8 +37,8 @@ exe = EXE(
     a.binaries,
     a.zipfiles,
     a.datas,
-    Tree('..\\PROGRAM\\Chrome', prefix='Chrome\\'),
-    Tree('..\\PROGRAM\\Images', prefix='Images\\'),
+    Tree('..\\..\\PROGRAM\\Chrome', prefix='Chrome\\'),
+    Tree('..\\..\\PROGRAM\\Images', prefix='Images\\'),
     splash,
     splash.binaries,
     [],
@@ -56,5 +56,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['Assets\\Pomoimprove.ico'],
+    icon=['..\\Assets\\Pomoimprove.ico'],
 )
