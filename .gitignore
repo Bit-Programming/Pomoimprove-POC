@@ -3,3 +3,5 @@ Build/Windows/build
 Build/Windows/dist
 *__pycache__*
 .DS_Store
+.nova/
+.vscode/
