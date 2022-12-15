@@ -42,7 +42,7 @@ exe = EXE(
     splash,
     splash.binaries,
     [],
-    name='main',
+    name='Pomoimprove',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
