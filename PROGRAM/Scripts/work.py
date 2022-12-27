@@ -16,7 +16,7 @@ def googleAccountPopup():
     tkinter.messagebox.showinfo("Google Account", "To proceed with this application, you must sign into your Google Account. Your Google Account will be signed out of once the experiment is concluded. After you see the blocked screen, close out of the window.")
     # Start Chrome for person to signin
     DETACHED_PROCESS = 0x00000008
-    subprocess.call(config.chrome_path + " --new-window --app=https://accounts.google.com", creationflags=DETACHED_PROCESS)
+    subprocess.call(config.chrome_path + ' --new-window --app=https://accounts.google.com --user-data-dir="' + config.profile_path + '"', creationflags=DETACHED_PROCESS)
 # Prompt for Spotify account signin
 def spotifyAccountPopup():
     message = tkinter.messagebox.askquestion("Spotify Account", "If you want to, you can sign into your Spotify account and play music in the background while you are working. This is known to further increase productivity. Once you sign in, close out of the window.")
@@ -26,7 +26,7 @@ def spotifyAccountPopup():
         spotifyaccount = True
         # Start Chrome for person to signin
         DETACHED_PROCESS = 0x00000008
-        subprocess.call(config.chrome_path + " --new-window --app=https://accounts.spotify.com/en/login", creationflags=DETACHED_PROCESS)
+        subprocess.call(config.chrome_path + ' --new-window --app=https://accounts.spotify.com/en/login --user-data-dir="' + config.profile_path + '"', creationflags=DETACHED_PROCESS)
     else:
         # Set a variable so we know that they don't have a Spotify account
         spotifyaccount = False
@@ -52,7 +52,7 @@ def spotifyMusic():
     # Run the timer
     root.after(1000, timer)
     # Start the Chrome Spotify window
-    subprocess.Popen([config.chrome_path, "--new-window", "--app=https://open.spotify.com"], creationflags=subprocess.DETACHED_PROCESS)
+    subprocess.Popen(config.chrome_path + ' --new-window --app=https://open.spotify.com --user-data-dir="' + config.profile_path + '"', creationflags=subprocess.DETACHED_PROCESS)
 
 # Setup the long break period
 def longBreakPeriod():
@@ -68,7 +68,7 @@ def longBreakPeriod():
     # Run the timer
     root.after(1000, timer)
     # Start the Chrome YouTube window
-    subprocess.Popen([config.chrome_path, "--new-window", "--window-position=500,0", "--app=https://youtube.com"], creationflags=subprocess.DETACHED_PROCESS)
+    subprocess.Popen(config.chrome_path + ' --new-window --window-position=500,0 --app=https://youtube.com --user-data-dir="' + config.profile_path + '"', creationflags=subprocess.DETACHED_PROCESS)
 # Setup the short break period
 def shortBreakPeriod():
     # Set a variable to a function to run once the timer is done
@@ -88,7 +88,7 @@ def shortBreakPeriod():
     # Run the timer
     root.after(1000, timer)
     # Start the Chrome YouTube window
-    subprocess.Popen([config.chrome_path, "--new-window", "--window-position=500,0", "--app=https://youtube.com"], creationflags=subprocess.DETACHED_PROCESS)
+    subprocess.Popen(config.chrome_path + ' --new-window --window-position=500,0 --app=https://youtube.com --user-data-dir="' + config.profile_path + '"', creationflags=subprocess.DETACHED_PROCESS)
 # Setup the first work period
 def firstWorkPeriod():
     # Set a variable to a function to run once the timer is done
@@ -108,7 +108,7 @@ def firstWorkPeriod():
     # Run the timer
     root.after(1000, timer)
     # Start the Chrome Google Docs window
-    subprocess.Popen([config.chrome_path, "--new-window", "--start-fullscreen", "--app=https://docs.google.com/document/u/0/create?usp=dot_new"], creationflags=subprocess.DETACHED_PROCESS)
+    subprocess.Popen(config.chrome_path + ' --new-window --start-fullscreen --app=https://docs.google.com/document/u/0/create?usp=dot_new --user-data-dir="' + config.profile_path + '"', creationflags=subprocess.DETACHED_PROCESS)
 # Setup the other work periods
 def workPeriod():
     # Set a variable to a function to run once the timer is done
@@ -139,12 +139,10 @@ def quit():
         subprocess.call('taskkill /F /IM chrome.exe', creationflags=DETACHED_PROCESS)
     except:
         pass
-    # Find "AppData" location
-    appdata = os.getenv("LOCALAPPDATA")
+    # Try to delete the Pomoprofile data directory
     sleep.sleep(1)
-    # Try to delete the Chromium data directory
     try:
-        shutil.rmtree(appdata + "\\Chromium\\")
+        shutil.rmtree(config.profile_path)
     except:
         pass
     # Try to destroy the root window(s)
