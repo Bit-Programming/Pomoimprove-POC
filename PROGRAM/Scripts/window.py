@@ -1,4 +1,8 @@
-import win32gui, win32con, re
+## Import the required modules
+import sys
+# Import the required modules based on platform
+if sys.platform == 'win32':
+    import win32gui, win32con, re
 
 
 ## Functions for finding the hwnd of a window by a wildcard in the window title
