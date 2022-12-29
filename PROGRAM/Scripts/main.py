@@ -1,13 +1,17 @@
+## Import required modules
 from tkinter import ttk
 from tkinter import *
 from PIL import Image, ImageTk
-from ctypes import windll
 import tkinter.messagebox
-import lockdown, config, os, stop, keyboard
+import lockdown, config, os, stop, keyboard, sys
+# Import required modules based on platform
+if sys.platform == 'win32':
+    from ctypes import windll
 
 
 ## Enable HIDPI Support
-windll.shcore.SetProcessDpiAwareness(1)
+if sys.platform == 'win32':
+    windll.shcore.SetProcessDpiAwareness(1)
 
 
 ## Init Window
@@ -15,6 +19,7 @@ root = Tk()
 # Adjust window settings
 root.title("Pomoimprove")
 root.resizable(False, False)
+root.attributes('-fullscreen', True)
 root.overrideredirect(True)
 root.state("zoomed")
 root.configure(bg="#1c1c1c")
@@ -84,7 +89,16 @@ def on_enter_start(e): # Change color when hovered over
 def on_leave_start(e): # Revert color when no longer hovered over
     startbutton['background'] = '#3CC249'
 # Create "Start" button
-startbutton = Button(
+if sys.platform == 'darwin':
+    startbutton = Button(
+        root,
+        borderwidth=0,
+        text="Start",
+        font=("Segoe UI", 15),
+        activeforeground="black",
+        command=lambda: closeWindowsPopup())
+else:
+    startbutton = Button(
     root,
     bg="#3CC249",
     fg="#FFFFFF",

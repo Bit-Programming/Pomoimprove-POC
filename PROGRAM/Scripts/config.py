@@ -11,6 +11,11 @@ if getattr(sys, 'frozen', False):
 else:
     os.chdir("..")
     application_path = os.getcwd()
-    chrome_path = application_path + "\Pomoimprove\PROGRAM\Chrome\chrome.exe"
-    profile_path = application_path + "\Pomoprofile"
-    logo_path = application_path + "\Pomoimprove\PROGRAM\Images\Logo.png"
+    if sys.platform == 'darwin':
+        chrome_path = application_path + "/Pomoimprove/PROGRAM/Chrome/chrome.exe"
+        profile_path = application_path + "/Pomoprofile"
+        logo_path = application_path + "/Pomoimprove/PROGRAM/Images/Logo.png"
+    elif sys.platform == 'win32':
+        chrome_path = application_path + "\Pomoimprove\PROGRAM\Chrome\chrome.exe"
+        profile_path = application_path + "\Pomoprofile"
+        logo_path = application_path + "\Pomoimprove\PROGRAM\Images\Logo.png"
