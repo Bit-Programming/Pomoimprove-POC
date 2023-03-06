@@ -1,6 +1,6 @@
 PROGRAM/Chrome/
-Build/Windows/build
-Build/Windows/dist
+Build/build
+Build/dist
 *__pycache__*
 .DS_Store
 .nova/

@@ -1,5 +1,7 @@
 keyboard
 Pillow
 pywin32
-# This is only required for compiling
+# These are only required for compiling
 pyinstaller
+pyunpack
+patool
