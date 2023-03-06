@@ -1,6 +1,6 @@
 <div align="center">
 
-  <img src="https://github.com/Bit-Programming/Pomoimprove-POC/raw/main/Resources/Logo.png" alt="Pomoimprove Logo" width="400px"/>
+  <img src="https://github.com/Bit-Programming/Pomoimprove-POC/raw/main/Resources/Logo.png" alt="Pomoimprove Logo" width="200px"/>
 
   # **Pomoimprove**
 
